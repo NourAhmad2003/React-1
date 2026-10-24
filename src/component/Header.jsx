@@ -1,28 +1,31 @@
+import { Link, NavLink } from "react-router";
+import "./Header.css"
+
 export default function Header() {
   return (
     <div>
-      <header className="header">
-        <h1>Web Dev Roadmap</h1>
+      <header className="header comp">
+        <h1><Link to="/"> Web Dev Roadmap </Link> </h1>
         <ul className="flex">
           <li className="main-list">
-            <a className="main-link" href="/">
+            <NavLink className="main-link" to="/">
               Home
-            </a>
+            </NavLink>
           </li>
           <li className="main-list">
-            <a className="main-link" href="/Basic">
+            <NavLink className="main-link" to="/Basic">
               Basic
-            </a>
+            </NavLink>
           </li>
           <li className="main-list">
-            <a className="main-link" href="/Framework">
+            <NavLink className="main-link" to="/Framework">
               Framework
-            </a>
+            </NavLink>
           </li>
           <li className="main-list">
-            <a className="main-link" href="Tips">
+            <NavLink className="main-link" to="/Tips">
               Tip
-            </a>
+            </NavLink>
           </li>
         </ul>
       </header>
