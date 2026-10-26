@@ -1,12 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from './pages/Home';
-import Tips from './pages/Tips';
-import Basic from './pages/Basic';
-import Framework from './pages/Framework';
+import Home from "./pages/Home";
+import Tips from "./pages/Tips";
+import Basic from "./pages/Basic";
+import Framework from "./pages/Framework";
+import { HelmetProvider } from "react-helmet-async";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const router = createBrowserRouter([
   {
@@ -28,10 +30,13 @@ const router = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <HelmetProvider>
+      <RouterProvider router={router} />
+    </HelmetProvider>
+  </React.StrictMode>,
 );
+serviceWorkerRegistration.register();

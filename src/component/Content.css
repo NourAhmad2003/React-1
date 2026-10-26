@@ -1,7 +1,7 @@
 .hero-section {
   min-height: calc(100vh - 160px);
   display: flex;
-  align-items: center;        
+  /* align-items: center;         */
   justify-content: space-between;
   gap: 50px;
   padding: 0 120px;
