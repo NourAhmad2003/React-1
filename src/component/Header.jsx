@@ -13,7 +13,8 @@ export default function Header() {
         <h1><Link to="/"> Web Dev Roadmap </Link> </h1>
         <button className="theme"
         onClick={ () => {
-          changeTheme(theme ==="light" ? "dark" : "light")}}
+          changeTheme(theme ==="light" ? "dark" : "light")
+        }}
         > <FaMoon/> <FaSun/> </button>
         <ul className="flex">
           <li className="main-list">

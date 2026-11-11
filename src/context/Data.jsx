@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 const Data = createContext();
 
-const initialData = {theme: "light"};
+const initialData = {theme: localStorage.getItem("Theme") === null ? "light" : localStorage.getItem("Theme")};
 const reducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_THEME":
@@ -14,6 +14,7 @@ export function DataProvider({ children }) {
   const [firstState, dispatch] = useReducer(reducer, initialData);
 
   const changeTheme = (newTheme) => {
+    localStorage.setItem("Theme", newTheme);
     dispatch({ type: "CHANGE_THEME", newValue: newTheme });
   };
   return (
