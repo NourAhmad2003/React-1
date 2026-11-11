@@ -15,7 +15,7 @@ export default function Tips() {
       </Helmet>
       <Header />
       {/* <main className="hero-section">Tips Page</main> */}
-      <Content data="Tips" developer="Nour" />
+      <Content data="Tips" developer="Abo Al-Roos" />
       <Footer />
     </div>
   );

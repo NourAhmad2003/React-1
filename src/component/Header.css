@@ -2,18 +2,28 @@ header {
   background-color: #19a8e3;
 }
 
-h1 {
+header h1 {
   padding: 20px;
   font-size: 25px;
+  margin: 0;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
 }
 
 .header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .flex {
   display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .main-list {
@@ -21,9 +31,81 @@ h1 {
   font-size: 19px;
 }
 
-.main-link:hover,.main-link:active {
+.main-link {
+  padding: 8px 14px;
+  transition: 0.3s;
+}
+
+.main-link:hover,
+.main-link.active {
   background-color: rgb(21, 2, 79);
   box-shadow: 0 0 5px rgb(21, 2, 79);
   border-radius: 5px;
 }
 
+.hero-section {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 0 120px;
+  color: #0c18f3;
+}
+
+.hero-text {
+  width: 50%;
+  color: #000;
+}
+
+.hero-text h2 {
+  font-size: 45px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.hero-text p {
+  font-size: 22px;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 14px 35px;
+  background-color: #19a8e3;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background-color: rgb(21, 2, 79);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-img {
+  width: 45%;
+  max-height: 70vh;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.hero-text,
+.hero-text h2,
+.hero-text p,
+.hero-btn {
+  font-family: "Poppins", sans-serif;
+}
+
+.dark .hero-text h2 {
+  color: #ffffff;
+}
+
+.dark .hero-text p {
+  color: #cbd5e1;
+}

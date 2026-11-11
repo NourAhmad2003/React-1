@@ -15,7 +15,7 @@ export default function Framework() {
       </Helmet>
       <Header />
       {/* <main className="hero-section"> Framework Page </main> */}
-      <Content data="Framework" />
+      <Content data="Framework" developer="Ahmad"/>
       <Footer />
     </div>
   );
