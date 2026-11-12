@@ -93,3 +93,24 @@
 .dark .auth-form input:focus {
   border-color: #19a8e3;
 }
+
+.dark .auth-form button {
+  background-color: #19a8e3;
+  color: #ffffff;
+}
+
+.signin-msg {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+}
+
+.signin-msg a {
+  color: #19a8e3;
+  text-decoration: underline;
+}
+
+.dark .signin-msg {
+  color: #ffffff;
+}
