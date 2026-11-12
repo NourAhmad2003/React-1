@@ -12,6 +12,8 @@ export default function SignUp() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [MessageError, setMessageError] = useState("");
 
   return (
     <div>
@@ -52,6 +54,34 @@ export default function SignUp() {
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorMessage = error.message;
+                  setError(true);
+                  switch (errorCode) {
+                    case "auth/invalid-email":
+                      setMessageError("Invalid email address.");
+                      break;
+                    case "auth/invalid-password":
+                      setMessageError("Invalid password.");
+                      break;
+                    case "auth/invalid-credential":
+                      setMessageError("Invalid credential.");
+                      break;
+                    case "auth/too-many-requests":
+                      setMessageError(
+                        "Too many requests. Please try again later.",
+                      );
+                      break;
+                    case "auth/email-already-in-use":
+                      setMessageError("Email already in use.");
+                      break;
+                    case "auth/weak-password":
+                      setMessageError("Weak password. Please choose a stronger password.");
+                      break;
+                    case "auth/operation-not-allowed":
+                      setMessageError("Operation not allowed. Please contact support.");
+                      break;
+                    default:
+                      setMessageError("Failed to sign in. Please try again.");
+                  }
                   console.log(errorCode, errorMessage);
                 });
             }}
@@ -61,6 +91,11 @@ export default function SignUp() {
           <p className="account">
             <Link to="/signin">Already have an account? Sign in</Link>
           </p>
+          {error && (
+            <p className="error">
+              <span>{MessageError}</span>
+            </p>
+          )}
         </form>
       </main>
       <Footer />

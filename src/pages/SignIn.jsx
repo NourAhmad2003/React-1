@@ -54,7 +54,29 @@ export default function SignIn() {
                   const errorCode = error.code;
                   const errorMessage = error.message;
                   setError(true);
-                  setMessageError(errorMessage);
+                  // setMessageError(errorCode);
+                  switch (errorCode) {
+                    case "auth/invalid-email":
+                      setMessageError("Invalid email address.");
+                      break;
+                    case "auth/invalid-password":
+                      setMessageError("Invalid password.");
+                      break;
+                    case "auth/invalid-credential":
+                      setMessageError("Invalid credential.");
+                      break;
+                      case "auth/too-many-requests":
+                      setMessageError("Too many requests. Please try again later.");
+                      break;
+                    case "auth/user-not-found":
+                      setMessageError("User not found. Please check your email.");
+                      break;
+                    case "auth/wrong-password":
+                      setMessageError("Incorrect password. Please try again.");
+                      break;
+                    default:
+                      setMessageError("Failed to sign in. Please try again.");
+                  }
                   console.log("failed to sign in");
                 });
             }}
