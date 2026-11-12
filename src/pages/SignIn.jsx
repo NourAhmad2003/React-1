@@ -12,6 +12,8 @@ export default function SignIn() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [MessageError, setMessageError] = useState("");
   return (
     <div>
       <Helmet>
@@ -45,11 +47,14 @@ export default function SignIn() {
                   const user = userCredential.user;
                   console.log("Logged in successfully");
                   navigate("/");
+                  console.log(user);
                   // ...
                 })
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorMessage = error.message;
+                  setError(true);
+                  setMessageError(errorMessage);
                   console.log("failed to sign in");
                 });
             }}
@@ -59,6 +64,11 @@ export default function SignIn() {
           <p className="account">
             <Link to="/signup">Don't have an account? Sign up</Link>
           </p>
+          {error && (
+            <p className="error">
+              <span>{MessageError}</span>
+            </p>
+          )}
         </form>
       </main>
       <Footer />
