@@ -6,6 +6,7 @@ import Data from "../context/Data.jsx";
 import "../theme.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/Config";
+import {signOut } from "firebase/auth";
 
 export default function Header() {
   const [user, loading, error] = useAuthState(auth);
@@ -45,26 +46,46 @@ export default function Header() {
               </li>
             </>
           )}
-          <li className="main-list">
+          { user && <li className="main-list">
             <NavLink className="main-link" to="/">
               Home
             </NavLink>
-          </li>
-          <li className="main-list">
+          </li>}
+          { user && <li className="main-list">
             <NavLink className="main-link" to="/Basic">
               Basic
             </NavLink>
-          </li>
-          <li className="main-list">
+          </li>}
+          { user &&<li className="main-list">
             <NavLink className="main-link" to="/Framework">
               Framework
             </NavLink>
-          </li>
-          <li className="main-list">
+          </li>}
+          { user &&<li className="main-list">
             <NavLink className="main-link" to="/Tips">
               Tip
             </NavLink>
-          </li>
+          </li>}
+          {user && (
+            <li
+              onClick={() => {
+                signOut(auth)
+                  .then(() => {
+                    // Sign-out successful.
+                    console.log("Sign-out successful.");
+                  })
+                  .catch((error) => {
+                    // An error happened.
+                    console.log("failed to sign out", error);
+                  });
+              }}
+              className="main-list"
+            >
+              <NavLink className="main-link" to="/signin">
+                Signout
+              </NavLink>
+            </li>
+          )}
         </ul>
       </header>
     </div>
