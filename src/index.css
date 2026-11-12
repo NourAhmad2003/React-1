@@ -60,13 +60,14 @@ code {
   flex: 1;
 }
 
-main{
+main {
   min-height: calc(100vh - 160px);
   display: grid;
   place-items: center;
   padding: 40px 16px;
 }
-form{
+
+form {
   width: min(420px, 100%);
   display: flex;
   flex-direction: column;
@@ -77,7 +78,8 @@ form{
   box-shadow: 0 12px 30px rgba(0,0,0,0.10);
   border: 1px solid rgba(0,0,0,0.06);
 }
-input{
+
+input {
   width: 100%;
   padding: 12px 12px;
   border: 1px solid #cbd5e1;
@@ -88,15 +90,18 @@ input{
   background: #f9fafb;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-input::placeholder{
+
+input::placeholder {
   color: #94a3b8;
 }
-input:focus{
+
+input:focus {
   background: #ffffff;
   border-color: #19a8e3;
   box-shadow: 0 0 0 4px rgba(25,168,227,0.18);
 }
-form button{
+
+form button {
   margin-top: 6px;
   padding: 12px 14px;
   border: none;
@@ -109,30 +114,36 @@ form button{
   transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 10px 18px rgba(25,168,227,0.25);
 }
-form button:hover{
+
+form button:hover {
   filter: brightness(0.95);
 }
-form button:active{
+
+form button:active {
   transform: scale(0.98);
   box-shadow: none;
 }
-.account{
+
+.account {
   margin-top: 10px;
   font-size: 14px;
   text-align: center;
   font-weight: 400;
-   color: #475569;
+  color: #475569;
 }
-.account a{
+
+.account a {
   color: #0ea5e9;
   font-weight: 700;
   text-decoration: none;
   margin-left: 6px;
 }
-.account a:hover{
+
+.account a:hover {
   text-decoration: underline;
 }
-form p{
+
+form p {
   color: #1f2937;
 }
 
@@ -149,11 +160,13 @@ form p{
   color: #ffffff;
   font-weight: 500;
 }
+
 .light .auth p {
   font-size: 26px;
   color: #000000;
   font-weight: 500;
 }
+
 .auth a {
   color: #19a8e3;
   font-weight: 600;
@@ -161,4 +174,60 @@ form p{
 
 .auth a:hover {
   opacity: 0.85;
+}
+
+/*Basic Page*/
+.Basic-page {
+  width: min(500px, 100%);
+  background-color: #ffffff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 12px;
+}
+
+.Basic-page p {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 18px;
+  color: #0f172a;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  border-left: 4px solid #19a8e3;
+}
+
+.dark .Basic-page {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.dark .Basic-page p {
+  color: #ffffff;
+  background-color: #0f172a;
+}
+
+.delete {
+  margin-top: 15px;
+  width: 100%;
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.delete:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
 }
