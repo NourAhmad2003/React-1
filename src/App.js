@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Tips from "./pages/Tips";
 import Basic from "./pages/Basic";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 import Framework from "./pages/Framework";
 import {useContext } from "react";
 import Data from "./context/Data";
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
     path: "/Tips",
     element: <Tips />,
   },
+  {
+    path: "/SignIn",
+    element: <SignIn />,
+  },
+  {
+    path: "/SignUp",
+    element: <SignUp />,
+  }, 
 ]);
 
 function App() {
