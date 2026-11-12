@@ -1,22 +1,45 @@
 import { Link, NavLink } from "react-router";
 import "./Header.css";
 import { FaMoon, FaSun } from "react-icons/fa6";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import Data from "../context/Data.jsx";
 import "../theme.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/Config";
-import {signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 export default function Header() {
   const [user, loading, error] = useAuthState(auth);
   const { theme, changeTheme } = useContext(Data);
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      const hasSeenWelcome = sessionStorage.getItem("welcomeShown");
+      if (!hasSeenWelcome) {
+        setShowWelcome(true);
+      }
+    } else {
+      setShowWelcome(false);
+      sessionStorage.removeItem("welcomeShown");
+    }
+  }, [user]);
+
+  const handleCloseWelcome = () => {
+    setShowWelcome(false);
+    sessionStorage.setItem("welcomeShown", "true");
+  };
 
   return (
     <div>
-      {user && (
-        <div className="user-info">
-          <p>Welcome, {user.email}</p>
+      {user && showWelcome && (
+        <div className="welcome-overlay">
+          <div className="welcome-modal">
+            <p>Welcome, {user.email}</p>
+            <button className="welcome-ok-btn" onClick={handleCloseWelcome}>
+              OK
+            </button>
+          </div>
         </div>
       )}
       <header className="header comp">
@@ -46,26 +69,34 @@ export default function Header() {
               </li>
             </>
           )}
-          { user && <li className="main-list">
-            <NavLink className="main-link" to="/">
-              Home
-            </NavLink>
-          </li>}
-          { user && <li className="main-list">
-            <NavLink className="main-link" to="/Basic">
-              Basic
-            </NavLink>
-          </li>}
-          { user &&<li className="main-list">
-            <NavLink className="main-link" to="/Framework">
-              Framework
-            </NavLink>
-          </li>}
-          { user &&<li className="main-list">
-            <NavLink className="main-link" to="/Tips">
-              Tip
-            </NavLink>
-          </li>}
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/">
+                Home
+              </NavLink>
+            </li>
+          )}
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/Basic">
+                Basic
+              </NavLink>
+            </li>
+          )}
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/Framework">
+                Framework
+              </NavLink>
+            </li>
+          )}
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/Tips">
+                Tip
+              </NavLink>
+            </li>
+          )}
           {user && (
             <li
               onClick={() => {
