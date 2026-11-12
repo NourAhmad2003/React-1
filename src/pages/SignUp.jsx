@@ -3,7 +3,7 @@ import Footer from "../component/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router";
 import { auth } from "../firebase/Config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import "./Auth.css";
 import { useNavigate } from "react-router";
@@ -12,6 +12,7 @@ export default function SignUp() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [UserName, setUserName] = useState("");
   const [error, setError] = useState(false);
   const [MessageError, setMessageError] = useState("");
 
@@ -24,7 +25,14 @@ export default function SignUp() {
       <main className="auth-main">
         <form className="auth-form">
           <h2 className="auth-title">Create a new account</h2>
-          <input required placeholder="name" type="text" />
+          <input
+            onChange={(eo) => {
+              setUserName(eo.target.value);
+            }}
+            required
+            placeholder="username"
+            type="text"
+          />
           <input
             required
             placeholder="email"
@@ -49,6 +57,19 @@ export default function SignUp() {
                   // Signed up
                   const user = userCredential.user;
                   console.log("success");
+                  updateProfile(auth.currentUser, {
+                    displayName: UserName,
+                    photoURL: "https://example.com/jane-q-user/profile.jpg",
+                  })
+                    .then(() => {
+                      // Profile updated!
+                      console.log("Profile updated successfully");
+                    })
+                    .catch((error) => {
+                      // An error occurred
+                      console.log("Profile update failed", error);
+                    });
+
                   navigate("/");
                 })
                 .catch((error) => {
@@ -74,10 +95,14 @@ export default function SignUp() {
                       setMessageError("Email already in use.");
                       break;
                     case "auth/weak-password":
-                      setMessageError("Weak password. Please choose a stronger password.");
+                      setMessageError(
+                        "Weak password. Please choose a stronger password.",
+                      );
                       break;
                     case "auth/operation-not-allowed":
-                      setMessageError("Operation not allowed. Please contact support.");
+                      setMessageError(
+                        "Operation not allowed. Please contact support.",
+                      );
                       break;
                     default:
                       setMessageError("Failed to sign in. Please try again.");

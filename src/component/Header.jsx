@@ -112,7 +112,7 @@ export default function Header() {
               }}
               className="main-list"
             >
-              <NavLink className="main-link" to="/signin">
+              <NavLink className="main-link " to="/signin">
                 Signout
               </NavLink>
             </li>
