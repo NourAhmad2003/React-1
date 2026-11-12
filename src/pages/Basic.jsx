@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/Config";
+import Moment from 'react-moment';
 
 export default function Basic() {
   let navigate = useNavigate();
@@ -29,8 +30,8 @@ export default function Basic() {
         <div className="Basic-page">
           <p> welcome{user.displayName}</p>
           <p>Email : {user.email} </p>
-          <p> last sign in :{user.metadata.lastSignInTime} </p>
-          <p> Account created :{user.metadata.creationTime} </p>
+          <p> last sign in :{<Moment fromNow ago date={user.metadata.lastSignInTime} format="YYYY/MM/DD HH:mm" />} </p>
+          <p> Account created :{<Moment fromNow ago date={user.metadata.creationTime} format="YYYY/MM/DD HH:mm" />} </p>
           <button className="delete">Delete account</button>
         </div>
       </main>
